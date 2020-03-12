@@ -11,7 +11,7 @@ def kruskal(grafo):
     next = None
     
     costo_minimo = 0
-
+    
     #mientras los nodos visitados sea menor a los nodos en el grafo
     while len(visitados) < len(nodos):
         distancia = float('inf')
@@ -21,11 +21,14 @@ def kruskal(grafo):
             for d in nodos:
                 if s in visitados and d in visitados or s == d:
                     continue
-                if grafo[s][d] < distancia:
-                    distancia = grafo[s][d]
-                    costo_minimo += distancia
-                    pre = s
-                    next = d
+                try: 
+                    if grafo[s][d] < distancia:
+                        distancia = grafo[s][d]
+                        costo_minimo += distancia
+                        pre = s
+                        next = d
+                except KeyError:
+                    continue
 
         camino.append((pre, next))
         visitados.add(pre)
@@ -35,14 +38,16 @@ def kruskal(grafo):
 
 #asegurarme que la funcion de grafo ya no siga corriendo
 if __name__ == '__main__':
-    graph_dict = {  "s1":{"s1": 0, "s2": 6, "s3": 3, "s4": 4, "s5":3},
-                    "s2":{"s1": 1, "s2": 0, "s3": 4, "s4": 3, "s5":4},
-                    "s3":{"s1": 2, "s2": 6, "s3": 0, "s4":3, "s5":4},
-                    "s4":{"s1": 1, "s2": 5, "s3": 2, "s4":0,"s5":2},
-                    "s5":{"s1": 3, "s2": 5, "s3": 7, "s4":4,"s5":0},
+    graph_dict = {  "s1":{"s1": 0, "s2": 1, "s4": 4},
+                    "s2":{"s1": 1, "s2": 0, "s3": 2, "s4": 6, "s5":4},
+                    "s3":{"s2": 2, "s3": 0, "s5":5, "s6":6},
+                    "s4":{"s1": 4, "s2": 6, "s4":0,"s5":3, "s7":4},
+                    "s5":{"s2": 4, "s3": 5, "s4":3,"s5":0, "s6":8, "s7":7},
+                    "s6":{"s3": 6, "s7":3,"s5":8, "s6":0},
+                    "s7":{"s6": 3, "s5": 7, "s4":4,"s7":0},
     }
 
-    camino = kruskal(graph_dict)
-    print (camino)
+    resp = kruskal(graph_dict)
+    print (resp)
     #costo minimo
     #conjunto de aristas
