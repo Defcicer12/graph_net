@@ -53,4 +53,4 @@ if __name__ == '__main__':
     distance, path = dijkstra(graph_list, 2)
     #print distance, '\n', path
     distance, path = dijkstra(graph_dict, 's1')
-    print distance, '\n', path
+    print (distance, '\n', path)
