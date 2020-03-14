@@ -21,12 +21,12 @@ with open("Paquetes_Redes/ethernet_1.bin", "rb") as f:
                     print('\nProtocolo:')
                 print (res[i],end = '')
             if i in range(17,63):
-                if i ==17:
+                if i == 17:
                     print('\nResto de datos:')
                 print (res[i],end = '-')
     print('\n')
                 
-            #print("{:02x}".format(int(res[i])))
+    #print("{:02x}".format(int(res[i])))
     #print (res)
     #print (bytesRed)
     
