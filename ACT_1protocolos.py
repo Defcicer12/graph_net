@@ -1,11 +1,16 @@
 with open("Paquetes_Redes/ethernet_1.bin", "rb") as f:
+    #variable que lee cada byte
     byte = f.read(1)
+    #variable que suma los bytes leidos
     bytesRed = 0
+    #arreglo donde planeo poner todo en forma hexadecimal
     res = {0: 2}
     while byte:
         #Do stuff with byte.
         byte = f.read(1)
+        #transforma byte a hexadecimal de dos digitos y lo guarda en el arreglito
         res[bytesRed] = byte.hex()#''.join(format(ord(i), 'b') for i in byte)
+        #suma de bytes leidos
         bytesRed += 1
     print("Direccion Mac destino:")
     for i in res:
